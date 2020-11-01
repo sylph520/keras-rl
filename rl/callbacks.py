@@ -450,21 +450,21 @@ class WandbLogger(Callback):
                     metrics_dict[name] = float('nan')
 
         wandb.log({
-            'step': self.step,
+            # 'step': self.step,
             'episode': episode + 1,
-            'duration': duration,
+            # 'duration': duration,
             'episode_steps': episode_steps,
             'sps': float(episode_steps) / duration,
             'episode_reward': np.sum(self.rewards[episode]),
             'reward_mean': np.mean(self.rewards[episode]),
             'reward_min': np.min(self.rewards[episode]),
             'reward_max': np.max(self.rewards[episode]),
-            'action_mean': np.mean(self.actions[episode]),
-            'action_min': np.min(self.actions[episode]),
-            'action_max': np.max(self.actions[episode]),
-            'obs_mean': np.mean(self.observations[episode]),
-            'obs_min': np.min(self.observations[episode]),
-            'obs_max': np.max(self.observations[episode]),
+            # 'action_mean': np.mean(self.actions[episode]),
+            # 'action_min': np.min(self.actions[episode]),
+            # 'action_max': np.max(self.actions[episode]),
+            # 'obs_mean': np.mean(self.observations[episode]),
+            # 'obs_min': np.min(self.observations[episode]),
+            # 'obs_max': np.max(self.observations[episode]),
             **metrics_dict
         })
 

@@ -42,7 +42,9 @@ class Agent(object):
     def __init__(self, processor=None):
         self.processor = processor
         self.training = False
+        self.batch_reward = 0.0
         self.step = 0
+        self.ep_reward_list_tmp = []  #lsc
 
     def get_config(self):
         """Configuration of the agent for serialization.
@@ -222,6 +224,10 @@ class Agent(object):
                     # resetting the environment. We need to pass in `terminal=False` here since
                     # the *next* state, that is the state of the newly reset environment, is
                     # always non-terminal by convention.
+                    if episode_reward < 0.1:
+                        print("check") #lsc
+                    self.ep_reward_list_tmp.append(episode_reward)
+                    self.ep_reward_list_tmp
                     self.forward(observation)
                     self.backward(0., terminal=False)
 
@@ -232,6 +238,7 @@ class Agent(object):
                         'nb_steps': self.step,
                     }
                     callbacks.on_episode_end(episode, episode_logs)
+                    self.ep_tbl_id = -1
 
                     episode += 1
                     observation = None
